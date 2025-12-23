@@ -1,0 +1,6 @@
+.display-board .alert{
+    height:150px;
+    overflow:auto;
+    font-size: .9rem;
+    padding:5px;
+}

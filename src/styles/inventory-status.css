@@ -1,0 +1,19 @@
+.inventory-expired {
+  background-color: #f8d7da !important;
+  color: #842029;
+}
+
+.inventory-near-expiry {
+  background-color: #fff3cd !important;
+  color: #FFBF00;
+}
+
+.inventory-out-of-stock {
+  background-color: #e2e3e5 !important;
+  color: #41464b;
+}
+
+.inventory-normal {
+  background-color: #d1e7dd !important;
+  color: #0f5132;
+}

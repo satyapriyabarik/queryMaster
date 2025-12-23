@@ -1,0 +1,119 @@
+/* =======================
+   Theme variables
+   ======================= */
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #0f172a;
+  --text-light: #0f172a;
+  --text-dark: #e5e7eb;
+  --border-light: #e5e7eb;
+  --border-dark: #1e293b;
+  --primary: #2563eb;
+  --nav-accent: #3b82f6;
+}
+
+/* =======================
+   Body theme handling
+   ======================= */
+body[data-theme="light"] {
+  background-color: #f8fafc;
+  color: var(--text-light);
+}
+
+body[data-theme="dark"] {
+  background-color: #020617;
+  color: var(--text-dark);
+}
+/* =======================
+   OVERRIDE BOOTSTRAP ACTIVE NAV
+   ======================= */
+body[data-theme="light"] .navbar-nav .nav-link.nav-link-custom.active {
+  color: var(--nav-accent) !important;
+}
+body[data-theme="light"] .navbar-nav .nav-link.nav-link-custom:hover {
+  color: var(--nav-accent) !important;
+}
+body[data-theme="dark"] .navbar-nav .nav-link.nav-link-custom.active {
+  color: var(--nav-accent) !important;
+}
+body[data-theme="dark"] .navbar-nav .nav-link.nav-link-custom:hover {
+  color: var(--nav-accent) !important;
+}
+/* =======================
+   Navbar
+   ======================= */
+.app-navbar {
+  background-color: var(--bg-light);
+  border-bottom: 1px solid var(--border-light);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body[data-theme="dark"] .app-navbar {
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+/* =======================
+   Brand
+   ======================= */
+.app-brand {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Prevent hover/active effects */
+.app-brand:hover,
+.app-brand.active {
+  color: inherit !important;
+}
+
+
+/* =======================
+   Nav Links
+   ======================= */
+.nav-link-custom {
+  position: relative;
+  padding: 6px 0;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.nav-link-custom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link-custom.active {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.nav-link-custom.active::after {
+  width: 100%;
+}
+
+/* =======================
+   Theme toggle button
+   ======================= */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =======================
+   Mobile tweaks
+   ======================= */
+@media (max-width: 991px) {
+  .nav-link-custom {
+    padding: 10px 0;
+  }
+}

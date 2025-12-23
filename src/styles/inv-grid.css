@@ -1,0 +1,78 @@
+.inv-status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+   background-color: var(--badge-color, #2563eb);
+  color: #fff;
+}
+
+/* =========================
+   GRID CARD
+   ========================= */
+.inv-grid-card {
+  background-color: var(--inv-bg-card);
+  color: var(--inv-text);
+  border: 1px solid var(--inv-border);
+}
+
+/* =========================
+   TABLE BASE
+   ========================= */
+.inv-grid-card table {
+  background-color: var(--inv-bg-table) !important;
+  color: var(--inv-text);
+  border-color: var(--inv-border);
+}
+
+/* Table cells */
+.inv-grid-card th,
+.inv-grid-card td {
+  background-color: var(--inv-bg-table) !important;
+  color: var(--inv-text);
+  border-color: var(--inv-border);
+}
+
+/* Header */
+.inv-grid-card thead th {
+  background-color: var(--inv-bg-header) !important;
+  color: var(--inv-text);
+}
+
+/* =========================
+   ROW STATES
+   ========================= */
+
+/* Hover */
+.inv-grid-card tbody tr:hover td {
+  background-color: var(--inv-bg-hover) !important;
+}
+
+/* Striped rows */
+.inv-grid-card .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: var(--inv-bg-hover) !important;
+}
+
+/* =========================
+   MOBILE CARD VIEW
+   ========================= */
+.inv-grid-mobile-card {
+  background-color: var(--inv-bg-table);
+  color: var(--inv-text);
+  border: 1px solid var(--inv-border);
+}
+
+/* =========================
+   STATUS BADGE
+   ========================= */
+.inv-status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+}

@@ -1,0 +1,53 @@
+.step-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.step {
+  animation-duration: 0.35s;
+  animation-fill-mode: both;
+}
+
+.step-enter-left {
+  animation-name: slideInLeft;
+}
+
+.step-enter-right {
+  animation-name: slideInRight;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Progress bar */
+.step-progress {
+  height: 4px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.step-progress-fill {
+  height: 100%;
+  background-color: #2563eb;
+  transition: width 0.3s ease;
+}

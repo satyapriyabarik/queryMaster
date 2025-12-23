@@ -1,0 +1,43 @@
+/* =======================
+   LIGHT THEME
+   ======================= */
+body[data-theme="light"] {
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-muted: #f1f5f9;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+
+  --border-color: #e5e7eb;
+
+  --table-header: #f8fafc;
+  --table-hover: #f1f5f9;
+
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* =======================
+   DARK THEME
+   ======================= */
+body[data-theme="dark"] {
+  --bg-page: #020617;
+  --bg-card: #0f172a;
+  --bg-muted: #020617;
+
+  --text-primary: #e5e7eb;
+  --text-secondary: #94a3b8;
+
+  --border-color: #1e293b;
+
+  --table-header: #020617;
+  --table-hover: #020617;
+
+  --input-bg: #020617;
+  --input-border: #334155;
+
+  --shadow: 0 1px 3px rgba(0,0,0,0.6);
+}

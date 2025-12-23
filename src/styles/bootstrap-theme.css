@@ -1,0 +1,61 @@
+/* Page background */
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+}
+
+/* Cards */
+.card {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+/* Tables */
+.table {
+  color: var(--text-primary);
+}
+
+.table thead {
+  background-color: var(--table-header);
+}
+
+.table-hover tbody tr:hover {
+  background-color: var(--table-hover);
+}
+
+/* Forms */
+.form-control,
+.form-select {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--input-border);
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Alerts */
+.alert {
+  background-color: var(--bg-muted);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Dropdown */
+.dropdown-menu {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+/* Buttons (outline) */
+.btn-outline-secondary {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--bg-muted);
+}
