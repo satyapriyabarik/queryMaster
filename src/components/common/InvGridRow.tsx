@@ -1,6 +1,6 @@
 import React from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { BellIcon } from "lucide-react";
+import { BellIcon, CheckCircle2Icon, CheckCircleIcon } from "lucide-react";
 
 import { useCountdown } from "../../hooks/useCountdown";
 import { getInventoryStatus } from "../../utils/inventoryStatus";
@@ -50,7 +50,7 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
       <td className="text-center">{item.minStockLevel}</td>
       <td className="text-center">{item.expiryDate}</td>
       <td className="text-center">{item.storageLocation}</td>
-
+      <td className="text-center">{item.maxStockLevel}</td>
       <td className="text-center">
         <span
           className="inv-status-badge"
@@ -61,26 +61,28 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
       </td>
 
       <td className="text-center">
-        <OverlayTrigger
-          placement="top"
-          overlay={<Tooltip>{tooltipText}</Tooltip>}
-        >
-          <span>
-            <BellIcon
-              size={18}
-              color={canNotify ? cfg.color : "#9ca3af"}
-              style={{
-                cursor: canNotify ? "pointer" : "not-allowed",
-                opacity: canNotify ? 1 : 0.5
-              }}
-              onClick={() => {
-                if (canNotify) {
-                  onNotify?.(item.id, status);
-                }
-              }}
-            />
-          </span>
-        </OverlayTrigger>
+        {cfg.showNotify ? (
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>{tooltipText}</Tooltip>}
+          >
+            <span>
+              <BellIcon
+                size={18}
+                color={canNotify ? cfg.color : "#9ca3af"}
+                style={{
+                  cursor: canNotify ? "pointer" : "not-allowed",
+                  opacity: canNotify ? 1 : 0.5
+                }}
+                onClick={() => {
+                  if (canNotify) {
+                    onNotify?.(item.id, status);
+                  }
+                }}
+              />
+            </span>
+          </OverlayTrigger>) : (<CheckCircle2Icon  color={ cfg.color} />)
+}
       </td>
     </tr>
   );

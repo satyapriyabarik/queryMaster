@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowUp, ArrowDown, Download } from "lucide-react";
+import { ArrowUp, ArrowDown, Download, ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { Form, Button, Card, Dropdown } from "react-bootstrap";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
@@ -16,6 +16,7 @@ export interface InventoryRow {
   name: string;
   quantity: number;
   minStockLevel?: number;
+  maxStockLevel?: number;
   expiryDate: string;
   storageLocation: string;
   notifyRemainingSeconds?: number;
@@ -205,9 +206,9 @@ const InvGrid: React.FC<Props> = ({
 
         {pagination && totalPages > 1 && (
           <div className="d-flex justify-content-end gap-2 mt-3">
-            <Button size="sm" disabled={page === 1} onClick={() => setPage(p => p - 1)}>Prev</Button>
+            <Button size="sm" disabled={page === 1} onClick={() => setPage(p => p - 1)}><ArrowLeftIcon/></Button>
             <span>Page {page} / {totalPages}</span>
-            <Button size="sm" disabled={page === totalPages} onClick={() => setPage(p => p + 1)}>Next</Button>
+            <Button size="sm" disabled={page === totalPages} onClick={() => setPage(p => p + 1)}><ArrowRightIcon/></Button>
           </div>
         )}
       </Card.Body>

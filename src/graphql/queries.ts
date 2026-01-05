@@ -126,7 +126,6 @@ export const GET_SAVED_QUERIES = gql`
       id
       name
       sql_text
-      rules
       created_at
     }
   }

@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Table, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import { fetchQueryHistory } from "../../api/queryHistory";
 import { parseMySQLDate } from "../../utils/date";
-import { execute } from "graphql";
 import { useQueryExecution } from "../../context/QueryExecutionContext";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 const PAGE_SIZE = 5;
 
@@ -106,7 +106,7 @@ const { executeSQL } = useQueryExecution();
           disabled={page === 1}
           onClick={() => setPage(p => p - 1)}
         >
-          Prev
+          <ArrowLeftIcon/>
         </Button>
 
         <Button size="sm" variant="secondary" disabled>
@@ -115,10 +115,13 @@ const { executeSQL } = useQueryExecution();
 
         <Button
           size="sm"
+          disabled={PAGE_SIZE * page > rows.length}
+
           onClick={() => setPage(p => p + 1)}
         >
-          Next
-        </Button>
+          <ArrowRightIcon/>
+            
+                   </Button>
           </div>
           <Modal
   show={showModal}

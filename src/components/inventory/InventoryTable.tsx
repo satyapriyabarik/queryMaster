@@ -17,6 +17,7 @@ const headers: InvGridHeader[] = [
   { label: "Min.Qty", sortKey: "quantity" },
   { label: "Expiry Date", sortKey: "expiryDate" },
   { label: "Location", sortKey: "storageLocation" },
+  {label:"Max.Qty"},
   { label: "Status" },
   { label: "Action" }
 ];
