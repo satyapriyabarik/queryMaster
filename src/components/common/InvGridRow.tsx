@@ -81,7 +81,7 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
                 }}
               />
             </span>
-          </OverlayTrigger>) : (<CheckCircle2Icon  color={ cfg.color} />)
+          </OverlayTrigger>) : (<CheckCircle2Icon color={cfg.color} size={16} />)
 }
       </td>
     </tr>
