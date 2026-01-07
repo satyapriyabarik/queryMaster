@@ -5,6 +5,7 @@ export function getInventoryStatus(
   quantity: number,
   expiryDate?: string,
   minStockLevel?: number,
+  maxStockLevel?: number
 ): InventoryStatus {
   const today = new Date();
   const expiry = expiryDate ? new Date(expiryDate) : null;
@@ -26,7 +27,6 @@ export function getInventoryStatus(
     return "OUT_OF_STOCK";
   }
 
-  // 🔥 THIS WAS MISSING
   if (
     typeof minStockLevel === "number" &&
     quantity > 0 &&
@@ -34,6 +34,8 @@ export function getInventoryStatus(
   ) {
     return "LOW_STOCK";
   }
-
+if(typeof maxStockLevel === "number" && quantity >= maxStockLevel){
+    return "AVAILABLE";
+}
   return "NORMAL";
 }

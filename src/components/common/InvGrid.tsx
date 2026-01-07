@@ -78,7 +78,8 @@ const InvGrid: React.FC<Props> = ({
           r.storageLocation,
           r.expiryDate,
           r.quantity,
-          getInventoryStatus(r.quantity, r.expiryDate, r.minStockLevel)
+          r.maxStockLevel,
+          getInventoryStatus(r.quantity, r.expiryDate, r.minStockLevel, r.maxStockLevel)
         ]
           .join(" ")
           .toLowerCase()

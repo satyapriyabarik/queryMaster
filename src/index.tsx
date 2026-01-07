@@ -11,6 +11,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root')!
 );
 const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
