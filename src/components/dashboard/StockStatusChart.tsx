@@ -35,12 +35,11 @@ export default function StockStatusChart() {
   const { data, loading, error } =
     useQuery<GetInventoryResult>(GET_INVENTORY);
 
-  const inventory = data?.inventory ?? [];
-
   /* =======================
      Chart data
      ======================= */
   const chartData = useMemo(() => {
+    const inventory = data?.inventory || [];
     const topItems = [...inventory]
       .sort((a, b) => b.quantity - a.quantity)
       .slice(0, MAX_ITEMS);
@@ -63,7 +62,7 @@ export default function StockStatusChart() {
         }
       ]
     };
-  }, [inventory]);
+  }, [data]);
 
   const options = useMemo(
     () => ({

@@ -25,16 +25,15 @@ const MAX_ITEMS = 8; // avoid clutter
 export default function StockMovementChart() {
   const isDark = document.body.dataset.theme === "dark";
 
-const gridColor = isDark
-  ? "rgba(255,255,255,0.08)"
-  : "rgba(0,0,0,0.05)";
+  const gridColor = isDark
+    ? "rgba(255,255,255,0.08)"
+    : "rgba(0,0,0,0.05)";
 
   const { data, loading, error } =
     useQuery<GetInventoryResult>(GET_INVENTORY);
 
-  const inventory = data?.inventory ?? [];
-
   const chartData = useMemo(() => {
+    const inventory = data?.inventory || [];
     const sorted = [...inventory]
       .sort((a, b) => b.quantity - a.quantity)
       .slice(0, MAX_ITEMS);
@@ -50,7 +49,7 @@ const gridColor = isDark
         }
       ]
     };
-  }, [inventory]);
+  }, [data]);
 
   const options = useMemo(
     () => ({
@@ -67,7 +66,7 @@ const gridColor = isDark
           }
         }
       },
-    
+
       scales: {
         x: {
           ticks: {
@@ -87,7 +86,7 @@ const gridColor = isDark
         }
       }
     }),
-    []
+    [gridColor]
   );
 
   if (loading) return <p>Loading...</p>;

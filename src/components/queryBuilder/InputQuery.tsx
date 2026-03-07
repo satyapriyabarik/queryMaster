@@ -51,13 +51,13 @@ const InputQuery: React.FC = () => {
 
   const [sql, setSql] = useState("");
   const [error, setError] = useState<string | null>(null);
-   const [valid, setValid] = useState<string | null>(null);
+  const [valid, setValid] = useState<string | null>(null);
   const [isValid, setIsValid] = useState(false);
   const [resultRows, setResultRows] = useState<any[]>([]);
   const [canSave, setCanSave] = useState(false);
 
   const queryClient = useQueryClient();
-const [toast, setToast] = useState<{
+  const [toast, setToast] = useState<{
     msg: string;
     type: "success" | "warning";
   } | null>(null);
@@ -111,7 +111,7 @@ const [toast, setToast] = useState<{
       .catch(err => {
         setError(err.message || "Query execution failed");
       });
-  }, [externalSQL]);
+  }, [externalSQL, executeRawQuery, queryClient]);
 
   /* =======================
      Handlers
@@ -253,7 +253,7 @@ const [toast, setToast] = useState<{
           {error}
         </Alert>
       )}
-       {/* ===== Valid Query ===== */}
+      {/* ===== Valid Query ===== */}
       {isValid && (
         <Alert variant="success" className="text-success mt-2" closeVariant="black" onClose={() => setValid(null)} dismissible>
           {valid}
@@ -311,21 +311,21 @@ const [toast, setToast] = useState<{
       </Card>
     </div>
     <ToastContainer position="top-center">
-        {toast && (
-          <Toast
-            bg={toast.type}
-            show
-            autohide
-            delay={4000}
-            onClose={() => setToast(null)}
-          >
-            <Toast.Body className="text-white">
-              {toast.msg}
-            </Toast.Body>
-          </Toast>
-        )}
-      </ToastContainer>
-    </>
+      {toast && (
+        <Toast
+          bg={toast.type}
+          show
+          autohide
+          delay={4000}
+          onClose={() => setToast(null)}
+        >
+          <Toast.Body className="text-white">
+            {toast.msg}
+          </Toast.Body>
+        </Toast>
+      )}
+    </ToastContainer>
+  </>
   );
 };
 
