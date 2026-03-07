@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Table, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import { fetchQueryHistory } from "../../api/queryHistory";
 import { parseMySQLDate } from "../../utils/date";
-import { execute } from "graphql";
 import { useQueryExecution } from "../../context/QueryExecutionContext";
 
 const PAGE_SIZE = 5;
@@ -36,29 +35,29 @@ const QueryHistoryGrid = () => {
      TanStack Query
      ======================= */
   const {
-  data: rows = [],
-  isLoading,
-  isError
-} = useQuery({
-  queryKey: ["queryHistory", page, search],
-  queryFn: () =>
-    fetchQueryHistory({
-      page,
-      limit: PAGE_SIZE,
-      search,
-      sortBy: "created_at",
-      order: "DESC"
-    }),
-  placeholderData: previousData => previousData
-});
+    data: rows = [],
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["queryHistory", page, search],
+    queryFn: () =>
+      fetchQueryHistory({
+        page,
+        limit: PAGE_SIZE,
+        search,
+        sortBy: "created_at",
+        order: "DESC"
+      }),
+    placeholderData: previousData => previousData
+  });
 
-const { executeSQL } = useQueryExecution();
+  const { executeSQL } = useQueryExecution();
   if (isLoading) return <Spinner animation="border" />;
   if (isError) return <Alert variant="danger">Failed to load history</Alert>;
 
   return (
     <>
-     
+
       {/* Search */}
       <Form.Control
         placeholder="Search (min 3 characters)…"
@@ -70,8 +69,8 @@ const { executeSQL } = useQueryExecution();
       {/* Grid */}
       <Table striped bordered hover responsive>
         <thead>
-                  <tr>
-             <th className="text-center text-muted">QID</th>
+          <tr>
+            <th className="text-center text-muted">QID</th>
             <th className="text-center text-muted">Name</th>
             <th className="text-center text-muted">Executed At</th>
           </tr>
@@ -85,13 +84,13 @@ const { executeSQL } = useQueryExecution();
             </tr>
           ) : (
             rows.map((q: any) => (
-                <tr key={q.id}>
+              <tr key={q.id}>
                 <td className="text-center text-muted">{q.id}</td>
-                <td className="text-center text-primary text-underline"><Button variant="text"  onClick={() => {
-      setSelectedSQL(q.sql_text);
-      setShowModal(true);
-    }}>{q.name || "—"}</Button></td>
-                
+                <td className="text-center text-primary text-underline"><Button variant="text" onClick={() => {
+                  setSelectedSQL(q.sql_text);
+                  setShowModal(true);
+                }}>{q.name || "—"}</Button></td>
+
                 <td className="text-center text-muted">{parseMySQLDate(q.created_at)}</td>
               </tr>
             ))
@@ -119,44 +118,44 @@ const { executeSQL } = useQueryExecution();
         >
           Next
         </Button>
-          </div>
-          <Modal
-  show={showModal}
-  onHide={() => setShowModal(false)}
-  size="lg"
-  centered
->
-  <Modal.Header closeButton>
-    <Modal.Title>Generated SQL</Modal.Title>
-  </Modal.Header>
+      </div>
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        size="lg"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Generated SQL</Modal.Title>
+        </Modal.Header>
 
-  <Modal.Body>
-    <pre
-      style={{
-        background: "#111",
-        color: "#0f0",
-        padding: 12,
-        borderRadius: 4,
-        maxHeight: 400,
-        overflow: "auto"
-      }}
-    >
-      {selectedSQL}
-    </pre>
-  </Modal.Body>
+        <Modal.Body>
+          <pre
+            style={{
+              background: "#111",
+              color: "#0f0",
+              padding: 12,
+              borderRadius: 4,
+              maxHeight: 400,
+              overflow: "auto"
+            }}
+          >
+            {selectedSQL}
+          </pre>
+        </Modal.Body>
 
         <Modal.Footer>
-           <Button variant="primary" onClick={() => {
-  executeSQL(selectedSQL);
-  setShowModal(false);
-}}>
-      Execute
-    </Button>
-    <Button variant="secondary" onClick={() => setShowModal(false)}>
-      Close
-    </Button>
-  </Modal.Footer>
-</Modal>
+          <Button variant="primary" onClick={() => {
+            executeSQL(selectedSQL);
+            setShowModal(false);
+          }}>
+            Execute
+          </Button>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
     </>
   );

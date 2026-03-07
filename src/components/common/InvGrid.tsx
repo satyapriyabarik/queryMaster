@@ -16,6 +16,7 @@ export interface InventoryRow {
   name: string;
   quantity: number;
   minStockLevel?: number;
+  maxStockLevel?: number;
   expiryDate: string;
   storageLocation: string;
   notifyRemainingSeconds?: number;
@@ -77,7 +78,7 @@ const InvGrid: React.FC<Props> = ({
           r.storageLocation,
           r.expiryDate,
           r.quantity,
-          getInventoryStatus(r.quantity, r.expiryDate, r.minStockLevel)
+          getInventoryStatus(r.quantity, r.expiryDate, r.minStockLevel, r.maxStockLevel)
         ]
           .join(" ")
           .toLowerCase()

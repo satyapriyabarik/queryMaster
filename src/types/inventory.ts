@@ -19,7 +19,7 @@ export type InventoryUnit =
   | "litre";
 
 export type InventoryStatus =
-  | "NORMAL"
+  | "AVAILABLE"
   | "NEAR_EXPIRY"
   | "EXPIRED"
   | "OUT_OF_STOCK"

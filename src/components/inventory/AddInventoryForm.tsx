@@ -12,13 +12,14 @@ export default function AddInventoryForm() {
 
   const [form, setForm] = useState({
     name: "",
-    category: "DAIRY",
+    category: "TABLET",
     quantity: 0,
     expiryDate: "",
     storageLocation: "FRIDGE",
     minStockLevel: 0,
     maxStockLevel: 0,
-    costPerUnit: 0
+    costPerUnit: 0,
+    batchNo: ""
   });
 
   const [addItem, { loading, error }] = useMutation(
@@ -56,7 +57,7 @@ export default function AddInventoryForm() {
 
   return (
     <div className="container mt-4" style={{ maxWidth: 520 }}>
-      <form className="bg-white p-4 shadow rounded">
+      <form className="bg-white p-4 shadow rounded" onSubmit={handleSubmit}>
 
         {/* Progress */}
         <div className="mb-3">
@@ -93,10 +94,12 @@ export default function AddInventoryForm() {
                 value={form.category}
                 onChange={handleChange}
               >
-                <option>DAIRY</option>
-                <option>MEAT</option>
-                <option>PRODUCE</option>
-                <option>BAKERY</option>
+                <option>TABLET</option>
+                <option>CAPSULE</option>
+                <option>SYRUP</option>
+                <option>INJECTABLE</option>
+                <option>TOPICAL</option>
+                <option>OTHER</option>
               </select>
 
               <label className="form-label">Storage Location</label>
@@ -106,6 +109,22 @@ export default function AddInventoryForm() {
                 value={form.storageLocation}
                 onChange={handleChange}
               >
+                <option>Shelf-A1</option>
+                <option>Shelf-A2</option>
+                <option>Shelf-A3</option>
+                <option>Shelf-A4</option>
+                <option>Shelf-B1</option>
+                <option>Shelf-B2</option>
+                <option>Shelf-B3</option>
+                <option>Shelf-B4</option>
+                <option>Shelf-C1</option>
+                <option>Shelf-C2</option>
+                <option>Shelf-C3</option>
+                <option>Shelf-C4</option>
+                <option>Shelf-D1</option>
+                <option>Shelf-D2</option>
+                <option>Shelf-D3</option>
+                <option>Shelf-D4</option>
                 <option>FRIDGE</option>
                 <option>FREEZER</option>
                 <option>DRY</option>
@@ -166,7 +185,16 @@ export default function AddInventoryForm() {
                 onChange={handleChange}
                 required
               />
-
+              <label className="form-label">Batch No.</label>
+              <input
+                className="form-control mb-3"
+                type="text"
+                name="batchNo"
+                value={"BATCH-" + Date.now()}
+                onChange={handleChange}
+                disabled
+                required
+              />
               <div className="d-flex gap-2">
                 <button className="btn btn-outline-secondary w-50" onClick={prev}>
                   Previous

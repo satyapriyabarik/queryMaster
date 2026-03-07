@@ -105,7 +105,7 @@ export default function StockStatusChart() {
     "NEAR_EXPIRY",
     "LOW_STOCK",
     "EXPIRED",
-    "NORMAL"
+    "AVAILABLE"
   ];
 
   return (

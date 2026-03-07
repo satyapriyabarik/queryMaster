@@ -27,7 +27,7 @@ export const GET_INVENTORY = gql`
 export const NEAR_EXPIRY = gql`
   query NearExpiry($days: Int!) {
     nearExpiry(days: $days) {
-      id
+      id  
       name
       expiryDate
       quantity
@@ -126,7 +126,6 @@ export const GET_SAVED_QUERIES = gql`
       id
       name
       sql_text
-      rules
       created_at
     }
   }

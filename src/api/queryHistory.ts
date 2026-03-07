@@ -15,7 +15,6 @@ export interface QueryHistoryRow {
   id: number;
   name: string;
   sql_text: string;
-  rules: any;
   created_at: string;
 }
 

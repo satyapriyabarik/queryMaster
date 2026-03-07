@@ -1,6 +1,6 @@
 import React from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { BellIcon } from "lucide-react";
+import { BellIcon, CheckCircle2Icon } from "lucide-react";
 
 import { useCountdown } from "../../hooks/useCountdown";
 import { getInventoryStatus } from "../../utils/inventoryStatus";
@@ -36,12 +36,11 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
   const remaining = useCountdown(item.notifyRemainingSeconds ?? 0);
   const canNotify = remaining === 0;
   const hours = Math.floor(remaining / 3600);
-    const minutes = Math.floor((remaining % 3600) / 60);
-    const seconds = remaining % 60;
+  const minutes = Math.floor((remaining % 3600) / 60);
+  const seconds = remaining % 60;
   const tooltipText = canNotify
-  ? "Notify"
-  : `Already notified. Please try again in ${
-      hours > 0 ? `${hours}h ` : ""
+    ? "Notify"
+    : `Already notified. Please try again in ${hours > 0 ? `${hours}h ` : ""
     }${minutes}m ${seconds}s`;
   return (
     <tr>
@@ -61,26 +60,29 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
       </td>
 
       <td className="text-center">
-        <OverlayTrigger
-          placement="top"
-          overlay={<Tooltip>{tooltipText}</Tooltip>}
-        >
-          <span>
-            <BellIcon
-              size={18}
-              color={canNotify ? cfg.color : "#9ca3af"}
-              style={{
-                cursor: canNotify ? "pointer" : "not-allowed",
-                opacity: canNotify ? 1 : 0.5
-              }}
-              onClick={() => {
-                if (canNotify) {
-                  onNotify?.(item.id, status);
-                }
-              }}
-            />
-          </span>
-        </OverlayTrigger>
+        {cfg.label === "Available" ? <CheckCircle2Icon size={18} color={cfg.color} /> :
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>{tooltipText}</Tooltip>}
+          >
+            <span>
+
+              <BellIcon
+                size={18}
+                color={canNotify ? cfg.color : "#9ca3af"}
+                style={{
+                  cursor: canNotify ? "pointer" : "not-allowed",
+                  opacity: canNotify ? 1 : 0.5
+                }}
+                onClick={() => {
+                  if (canNotify) {
+                    onNotify?.(item.id, status);
+                  }
+                }}
+              />
+            </span>
+          </OverlayTrigger>
+        }
       </td>
     </tr>
   );

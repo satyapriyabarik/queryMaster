@@ -3,7 +3,7 @@ export type InventoryStatus =
   | "NEAR_EXPIRY"
   | "OUT_OF_STOCK"
   | "LOW_STOCK"
-  | "NORMAL";
+  | "AVAILABLE";
 
 export const INVENTORY_STATUS_CONFIG: Record<
   InventoryStatus,
@@ -51,7 +51,7 @@ export const INVENTORY_STATUS_CONFIG: Record<
     homeTitle: "Low Stock",
     homeIcon: "AlertTriangle"
   },
-  NORMAL: {
+  AVAILABLE: {
     label: "Available",
     className: "inventory-normal",
     color: "#198754",
