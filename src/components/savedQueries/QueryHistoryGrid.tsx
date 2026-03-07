@@ -4,6 +4,7 @@ import { Table, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import { fetchQueryHistory } from "../../api/queryHistory";
 import { parseMySQLDate } from "../../utils/date";
 import { useQueryExecution } from "../../context/QueryExecutionContext";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 const PAGE_SIZE = 5;
 
@@ -105,7 +106,7 @@ const QueryHistoryGrid = () => {
           disabled={page === 1}
           onClick={() => setPage(p => p - 1)}
         >
-          Prev
+          <ArrowLeftIcon />
         </Button>
 
         <Button size="sm" variant="secondary" disabled>
@@ -114,9 +115,12 @@ const QueryHistoryGrid = () => {
 
         <Button
           size="sm"
+          disabled={PAGE_SIZE * page > rows.length}
+
           onClick={() => setPage(p => p + 1)}
         >
-          Next
+          <ArrowRightIcon />
+
         </Button>
       </div>
       <Modal

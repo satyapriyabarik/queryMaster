@@ -7,7 +7,9 @@ import {
   Form,
   Alert,
   Card,
-  Spinner
+  Spinner,
+  ToastContainer,
+  Toast
 } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client/react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -49,12 +51,16 @@ const InputQuery: React.FC = () => {
 
   const [sql, setSql] = useState("");
   const [error, setError] = useState<string | null>(null);
+   const [valid, setValid] = useState<string | null>(null);
   const [isValid, setIsValid] = useState(false);
   const [resultRows, setResultRows] = useState<any[]>([]);
   const [canSave, setCanSave] = useState(false);
 
   const queryClient = useQueryClient();
-
+const [toast, setToast] = useState<{
+    msg: string;
+    type: "success" | "warning";
+  } | null>(null);
   /* =======================
      Fetch available tables
      ======================= */
@@ -127,6 +133,7 @@ const InputQuery: React.FC = () => {
     } else {
       setError(null);
       setIsValid(true);
+      setValid("SQL is valid! You can execute the query.");
     }
   };
 
@@ -149,9 +156,17 @@ const InputQuery: React.FC = () => {
       queryClient.invalidateQueries({
         queryKey: ["queryHistory"]
       });
+      setToast({
+        msg: "Query executed successfully ✅",
+        type: "success"
+      });
     } catch (err: any) {
       setError(err.message || "Query execution failed");
       setCanSave(false);
+      setToast({
+        msg: "Query execution failed ❌",
+        type: "warning"
+      });
     }
   };
 
@@ -168,8 +183,16 @@ const InputQuery: React.FC = () => {
       queryClient.invalidateQueries({
         queryKey: ["queryHistory"]
       });
+      setToast({
+        msg: "Query saved successfully ✅",
+        type: "success"
+      });
     } catch (err: any) {
       setError(err.message || "Failed to save query");
+      setToast({
+        msg: "Failed to save query ❌",
+        type: "warning"
+      });
     }
   };
 
@@ -177,7 +200,7 @@ const InputQuery: React.FC = () => {
      Render
      ======================= */
 
-  return (
+  return (<>
     <div>
       {/* ===== Table helper ===== */}
       <Card className="mb-3 shadow-sm">
@@ -226,8 +249,14 @@ const InputQuery: React.FC = () => {
 
       {/* ===== Error ===== */}
       {error && (
-        <Alert variant="danger" className="mt-2">
+        <Alert variant="danger" className="text-danger mt-2">
           {error}
+        </Alert>
+      )}
+       {/* ===== Valid Query ===== */}
+      {isValid && (
+        <Alert variant="success" className="text-success mt-2" closeVariant="black" onClose={() => setValid(null)} dismissible>
+          {valid}
         </Alert>
       )}
 
@@ -281,6 +310,22 @@ const InputQuery: React.FC = () => {
         </Card.Body>
       </Card>
     </div>
+    <ToastContainer position="top-center">
+        {toast && (
+          <Toast
+            bg={toast.type}
+            show
+            autohide
+            delay={4000}
+            onClose={() => setToast(null)}
+          >
+            <Toast.Body className="text-white">
+              {toast.msg}
+            </Toast.Body>
+          </Toast>
+        )}
+      </ToastContainer>
+    </>
   );
 };
 

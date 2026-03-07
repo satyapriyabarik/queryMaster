@@ -46,7 +46,7 @@ const Home: React.FC = () => {
   const { data: nearExpiryData } =
     useQuery<NearExpiryResult>(NEAR_EXPIRY, {
       variables: { days: 5 }
-    });
+          });
 
   const { data: lowStockData } =
     useQuery<LowStockResult>(LOW_STOCK);

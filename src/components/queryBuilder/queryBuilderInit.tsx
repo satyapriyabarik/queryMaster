@@ -36,7 +36,7 @@ const QueryBuilder: React.FC = () => {
 
   const [query, setQuery] = useState<RuleGroupType>(initialState);
 
-  // 🔑 Always holds the latest query state
+  // Always holds the latest query state
   const queryRef = useRef<RuleGroupType>(initialState);
 
   useEffect(() => {

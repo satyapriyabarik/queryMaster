@@ -1,40 +1,4 @@
-// import { Card } from "react-bootstrap";
 
-// interface Props {
-//   value: number | string;
-//   label: string;
-//   color: string;
-//   icon?: React.ReactNode;
-// }
-
-// const KpiTile: React.FC<Props> = ({ value, label, color, icon }) => {
-//   return (
-//     <Card className="shadow-sm border-2 h-100">
-//       <Card.Body className="d-flex justify-content-between align-items-center">
-//         <div>
-//           <div style={{ fontSize: 28, fontWeight: 600 }}>{value}</div>
-//           <div className="text-shadow small">{label}</div>
-//         </div>
-//         <div
-//           style={{
-//             width: 40,
-//             height: 40,
-//             borderRadius: "50%",
-//             backgroundColor: color,
-//             display: "flex",
-//             alignItems: "center",
-//             justifyContent: "center",
-//             color: "#fff"
-//           }}
-//         >
-//           {icon}
-//         </div>
-//       </Card.Body>
-//     </Card>
-//   );
-// };
-
-// export default KpiTile;
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 interface TooltipItem {

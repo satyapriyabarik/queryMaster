@@ -18,6 +18,7 @@ export function mapInventoryToGrid(
     name: item.name,
     quantity: item.quantity,
     minStockLevel: item.minStockLevel,
+    maxStockLevel: item.maxStockLevel,
     expiryDate: item.expiryDate,
     storageLocation: item.storageLocation,
     notifyRemainingSeconds: item.notifyRemainingSeconds ?? 0

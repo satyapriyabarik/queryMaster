@@ -1,5 +1,5 @@
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { BellIcon } from "lucide-react";
+import { BellIcon, CheckCircle2Icon } from "lucide-react";
 import { useCountdown } from "../../hooks/useCountdown";
 import { InventoryRow } from "./InvGrid";
 import { getInventoryStatus } from "../../utils/inventoryStatus";
@@ -40,7 +40,7 @@ const hours = Math.floor(remaining / 3600);
           <span className="inv-status-badge" style={{ backgroundColor: cfg.color }}>
             {cfg.label}
           </span>
-
+{cfg.showNotify  ? (
           <OverlayTrigger overlay={<Tooltip>{tooltipText}</Tooltip>}>
             <span>
               <BellIcon
@@ -50,7 +50,8 @@ const hours = Math.floor(remaining / 3600);
                 onClick={() => canNotify && onNotify?.(item.id, status)}
               />
             </span>
-          </OverlayTrigger>
+            </OverlayTrigger>
+          ):(<CheckCircle2Icon size={18} color="#10b981" />)}  
         </div>
       </Card.Body>
     </Card>

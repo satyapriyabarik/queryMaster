@@ -49,7 +49,7 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
       <td className="text-center">{item.minStockLevel}</td>
       <td className="text-center">{item.expiryDate}</td>
       <td className="text-center">{item.storageLocation}</td>
-
+      <td className="text-center">{item.maxStockLevel}</td>
       <td className="text-center">
         <span
           className="inv-status-badge"
@@ -60,13 +60,12 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
       </td>
 
       <td className="text-center">
-        {cfg.label === "Available" ? <CheckCircle2Icon size={18} color={cfg.color} /> :
+        {cfg.showNotify ? (
           <OverlayTrigger
             placement="top"
             overlay={<Tooltip>{tooltipText}</Tooltip>}
           >
             <span>
-
               <BellIcon
                 size={18}
                 color={canNotify ? cfg.color : "#9ca3af"}
@@ -81,7 +80,7 @@ const InvGridRow: React.FC<InvGridRowProps> = ({
                 }}
               />
             </span>
-          </OverlayTrigger>
+          </OverlayTrigger>) : (<CheckCircle2Icon color={cfg.color} size={16} />)
         }
       </td>
     </tr>

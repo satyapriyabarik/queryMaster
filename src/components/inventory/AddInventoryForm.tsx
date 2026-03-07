@@ -4,12 +4,16 @@ import { ADD_INVENTORY_ITEM } from "../../graphql/mutations";
 import { GET_INVENTORY } from "../../graphql/queries";
 import { useNavigate } from "react-router-dom";
 import "../../styles/form-steps.css";
+import { Toast, ToastContainer } from "react-bootstrap";
 
 export default function AddInventoryForm() {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState<"left" | "right">("left");
   const navigate = useNavigate();
-
+  const [toast, setToast] = useState<{
+    msg: string;
+    type: "success" | "warning";
+  } | null>(null);
   const [form, setForm] = useState({
     name: "",
     category: "TABLET",
@@ -49,8 +53,22 @@ export default function AddInventoryForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
     await addItem({ variables: form });
-    navigate("/home"); // smooth SPA navigation
+     setToast({
+              msg: "Item added to inventory successfully ✅",
+              type: "success"
+     });
+      setTimeout(() => {
+        navigate("/home");
+      }, 4000);
+    } catch (e: any) {
+      setToast({
+        msg: "Failed to add items ❌",
+        type: "warning"
+      });
+    }
+    
   };
 
   const progress = (step / 3) * 100;
@@ -231,6 +249,7 @@ export default function AddInventoryForm() {
                   disabled={loading}
                 >
                   {loading ? "Adding..." : "Submit"}
+
                 </button>
               </div>
             </div>
@@ -243,6 +262,21 @@ export default function AddInventoryForm() {
           </div>
         )}
       </form>
+      <ToastContainer position="top-center">
+        {toast && (
+          <Toast
+            bg={toast.type}
+            show
+            autohide
+            delay={4000}
+            onClose={() => { setToast(null) }}
+          >
+            <Toast.Body className="text-white">
+              {toast.msg}
+            </Toast.Body>
+          </Toast>
+        )}
+      </ToastContainer>
     </div>
   );
 }
