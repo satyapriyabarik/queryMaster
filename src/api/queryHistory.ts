@@ -1,7 +1,7 @@
 import { request } from "graphql-request";
 import { GET_SAVED_QUERIES } from "../graphql/queries";
+import { API_URL } from "../utils/constants";
 
-const GRAPHQL_ENDPOINT = "http://localhost:4000/graphql";
 
 export interface FetchQueryHistoryParams {
   page: number;
@@ -26,7 +26,7 @@ export const fetchQueryHistory = async ({
   order
 }: FetchQueryHistoryParams): Promise<QueryHistoryRow[]> => {
   const data = await request(
-    GRAPHQL_ENDPOINT,
+    API_URL,
     GET_SAVED_QUERIES,
     {
       page,

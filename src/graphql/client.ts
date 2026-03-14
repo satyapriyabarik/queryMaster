@@ -1,8 +1,15 @@
 import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { API_URL } from "../utils/constants";
 
 const httpLink = new HttpLink({
-  uri: "http://ec2-13-204-54-11.ap-south-1.compute.amazonaws.com:4000/graphql"
-  // "http://localhost:4000"
+  uri: API_URL,
+  fetchOptions: {
+    mode: "cors"
+  },
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  }
 });
 
 export const client = new ApolloClient({

@@ -111,7 +111,7 @@ const InputQuery: React.FC = () => {
       .catch(err => {
         setError(err.message || "Query execution failed");
       });
-  }, [externalSQL, executeRawQuery, queryClient]);
+  }, [externalSQL]);
 
   /* =======================
      Handlers
